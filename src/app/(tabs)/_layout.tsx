@@ -14,7 +14,7 @@ const TabLayout = () => {
         options={{
           title: 'Trending',
           tabBarIcon: ({ focused, color, size }) => (
-            <TabBarIcon color={color} name="numeric-1" />
+            <TabBarIcon color={color} name="trending-up" />
           ),
         }}
       />
@@ -23,7 +23,7 @@ const TabLayout = () => {
         options={{
           title: 'Explore',
           tabBarIcon: ({ focused, color, size }) => (
-            <TabBarIcon color={color} name="numeric-2" />
+            <TabBarIcon color={color} name="selection-search" />
           ),
         }}
       />
