@@ -27,7 +27,7 @@ const RootLayout = () => {
       SplashScreen.hideAsync();
       setReady(true);
     }, 5000);
-  }, []);
+  }, [isReady]);
 
   if (!isReady) {
     return null;
