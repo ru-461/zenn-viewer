@@ -48,7 +48,7 @@ export default TrendingTabScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ECF5FF',
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
