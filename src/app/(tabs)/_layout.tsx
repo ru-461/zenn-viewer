@@ -16,6 +16,7 @@ const TabLayout = () => {
           tabBarIcon: ({ focused, color, size }) => (
             <TabBarIcon color={color} name="trending-up" />
           ),
+          tabBarActiveTintColor: '#3EA8FF',
         }}
       />
       <Tabs.Screen
@@ -25,6 +26,7 @@ const TabLayout = () => {
           tabBarIcon: ({ focused, color, size }) => (
             <TabBarIcon color={color} name="selection-search" />
           ),
+          tabBarActiveTintColor: '#3EA8FF',
         }}
       />
     </Tabs>
