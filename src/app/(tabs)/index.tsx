@@ -7,7 +7,9 @@ import ArticleCard from '../../components/ArticleCard';
 import { Article } from '../../types';
 
 const TrendingTabScreen = () => {
-  const { data, error, isLoading } = useSWR('https://zenn.dev/api/articles');
+  const { data, error, isLoading, isValidating, mutate } = useSWR(
+    'https://zenn.dev/api/articles',
+  );
 
   if (error) {
     return (
@@ -31,6 +33,8 @@ const TrendingTabScreen = () => {
     <View style={styles.container}>
       <FlatList
         data={articles}
+        onRefresh={() => mutate()}
+        refreshing={true}
         renderItem={article => (
           <ArticleCard article={article.item} key={article.item.id} />
         )}
