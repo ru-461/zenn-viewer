@@ -6,13 +6,8 @@ import useSWR from 'swr';
 import ArticleCard from '../../components/ArticleCard';
 import { Article } from '../../types';
 
-const fetcher = (...args) => fetch(...args).then(res => res.json());
-
 const TrendingTabScreen = () => {
-  const { data, error, isLoading } = useSWR(
-    'https://zenn.dev/api/articles',
-    fetcher,
-  );
+  const { data, error, isLoading } = useSWR('https://zenn.dev/api/articles');
 
   if (error) {
     return (

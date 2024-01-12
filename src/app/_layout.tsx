@@ -8,6 +8,7 @@ import {
   ThemeProvider,
 } from '@react-navigation/native';
 import { SplashScreen, Stack } from 'expo-router';
+import { SWRConfig } from 'swr';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -16,6 +17,9 @@ export const unstable_settings = {
 };
 
 SplashScreen.preventAutoHideAsync();
+
+const fetcher = (url: string): Promise<any> =>
+  fetch(url).then(res => res.json());
 
 const RootLayout = () => {
   // 読み込みステート
@@ -43,9 +47,11 @@ const RootLayoutNav = () => {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
+      <SWRConfig value={{ fetcher: fetcher }}>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+      </SWRConfig>
     </ThemeProvider>
   );
 };
