@@ -28,11 +28,8 @@ const RootLayout = () => {
   const [isReady, setReady] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      // 解除
-      SplashScreen.hideAsync();
-      setReady(true);
-    }, 5000);
+    SplashScreen.hideAsync();
+    setReady(true);
   }, [isReady]);
 
   if (!isReady) {
