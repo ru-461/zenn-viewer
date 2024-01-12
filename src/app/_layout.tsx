@@ -18,8 +18,10 @@ export const unstable_settings = {
 
 SplashScreen.preventAutoHideAsync();
 
-const fetcher = (url: string): Promise<any> =>
-  fetch(url).then(res => res.json());
+const fetcher = async (url: string): Promise<unknown> => {
+  const res = await fetch(url);
+  return res.json();
+};
 
 const RootLayout = () => {
   // 読み込みステート
