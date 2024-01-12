@@ -32,6 +32,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     flexWrap: 'wrap',
+    justifyContent: 'flex-start',
   },
-  text: { marginLeft: 10, fontWeight: 'bold', flexWrap: 'wrap' },
+  text: {
+    marginLeft: 10,
+    fontWeight: 'bold',
+    flexWrap: 'wrap',
+  },
 });
