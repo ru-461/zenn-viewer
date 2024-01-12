@@ -46,12 +46,12 @@ const RootLayoutNav = () => {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <SWRConfig value={{ fetcher: fetcher }}>
+    <SWRConfig value={{ fetcher: fetcher }}>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         </Stack>
-      </SWRConfig>
-    </ThemeProvider>
+      </ThemeProvider>
+    </SWRConfig>
   );
 };
