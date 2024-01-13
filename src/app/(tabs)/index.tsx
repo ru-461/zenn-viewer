@@ -1,15 +1,25 @@
+import { useState } from 'react';
+
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList, RefreshControl } from 'react-native-gesture-handler';
 import useSWR from 'swr';
 
 import ArticleCard from '../../components/ArticleCard';
 import { Article } from '../../types';
 
 const TrendingTabScreen = () => {
+  const [refreshing, setRefreshing] = useState(false);
+
   const { data, error, isLoading, isValidating, mutate } = useSWR(
     'https://zenn.dev/api/articles',
   );
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    mutate();
+    setRefreshing(false);
+  };
 
   if (error) {
     return (
@@ -33,8 +43,10 @@ const TrendingTabScreen = () => {
     <View style={styles.container}>
       <FlatList
         data={articles}
-        onRefresh={() => mutate()}
-        refreshing={true}
+        onRefresh={onRefresh}
+        refreshControl={
+          <RefreshControl onRefresh={onRefresh} refreshing={refreshing} />
+        }
         renderItem={article => (
           <ArticleCard article={article.item} key={article.item.id} />
         )}
