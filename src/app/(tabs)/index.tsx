@@ -26,7 +26,7 @@ const TrendingTabScreen = () => {
   if (error) {
     return (
       <View style={styles.container}>
-        <Text>failed to load.</Text>
+        <Text>Failed to load.</Text>
       </View>
     );
   }
