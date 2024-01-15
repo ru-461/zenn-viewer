@@ -10,7 +10,7 @@ View Zenn articles & books app.
 bun install
 ```
 
-### Lauch
+### Launch
 
 ```shell
 bun run start
