@@ -6,6 +6,7 @@ import { FlatList, RefreshControl } from 'react-native-gesture-handler';
 import useSWR from 'swr';
 
 import ArticleCard from '../../components/ArticleCard';
+
 import { Article } from '../../types';
 
 const TrendingTabScreen = () => {
@@ -24,7 +25,7 @@ const TrendingTabScreen = () => {
   if (error) {
     return (
       <View style={styles.container}>
-        <Text>failed to load.</Text>
+        <Text>Failed to load.</Text>
       </View>
     );
   }
