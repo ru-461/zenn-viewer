@@ -8,6 +8,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "check": "biome check --apply ./src",
     "format": "biome format ./src",
     "format:fix": "biome format --write ./src",
     "lint": "biome lint ./src",
@@ -36,11 +37,7 @@
     "typescript": "^5.1.3"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "biome check --apply --no-errors-on-unmatched",
-      "biome format --write --no-errors-on-unmatched",
-      "biome lint --apply --no-errors-on-unmatched"
-    ]
+    "src/**/*.{js,jsx,ts,tsx}": ["biome check --apply --no-errors-on-unmatched"]
   },
   "private": true
 }
