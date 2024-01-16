@@ -21,12 +21,10 @@ const TrendingTabScreen = () => {
     setRefreshing(false);
   };
 
-  const articles = data.articles as Array<Article>;
-
   if (error) {
     return (
       <View style={styles.container}>
-        <Text>Failed to load.</Text>
+        <Text>failed to load.</Text>
       </View>
     );
   }
@@ -38,6 +36,9 @@ const TrendingTabScreen = () => {
       </View>
     );
   }
+
+  // Type
+  const articles = data.articles as Array<Article>;
 
   return (
     <View style={styles.container}>
