@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import { FlatList, RefreshControl } from 'react-native-gesture-handler';
 import useSWR from 'swr';
@@ -48,7 +48,7 @@ const TrendingTabScreen = () => {
         refreshControl={
           <RefreshControl onRefresh={onRefresh} refreshing={refreshing} />
         }
-        renderItem={article => (
+        renderItem={(article) => (
           <ArticleCard article={article.item} key={article.item.id} />
         )}
       />

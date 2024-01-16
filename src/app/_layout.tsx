@@ -30,7 +30,7 @@ const RootLayout = () => {
   useEffect(() => {
     SplashScreen.hideAsync();
     setReady(true);
-  }, [isReady]);
+  }, []);
 
   if (!isReady) {
     return null;
