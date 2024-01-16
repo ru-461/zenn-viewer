@@ -8,7 +8,8 @@ const TabLayout = () => {
       screenOptions={{
         headerShown: true,
         tabBarShowLabel: false,
-      }}>
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{

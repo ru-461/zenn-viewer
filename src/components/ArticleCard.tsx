@@ -7,7 +7,8 @@ import EmojiBox from './EmojiBox';
 const ArticleCard = ({ article }: { article: Article }) => {
   return (
     <View
-      style={article.article_type === 'tech' ? styles.techBox : styles.ideaBox}>
+      style={article.article_type === 'tech' ? styles.techBox : styles.ideaBox}
+    >
       <View style={styles.row}>
         <EmojiBox emoji={article.emoji} />
         <Text style={styles.text}>{article.title}</Text>
