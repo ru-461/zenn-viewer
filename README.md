@@ -1,7 +1,6 @@
 # Zenn Viewer
 
-View Zenn articles & Zenn books app.
-Powered by [Expo](https://github.com/expo/expo) x [React Native](https://github.com/facebook/react-native).
+View Zenn articles & Zenn books app.  Powered by [Expo](https://github.com/expo/expo) x [React Native](https://github.com/facebook/react-native).
 
 ## Getting started
 
