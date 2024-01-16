@@ -33,3 +33,11 @@ export type Publication = {
   beta_stats: boolean;
   avatar_registered: boolean;
 };
+
+export type Topic = {
+  id: number;
+  name: string;
+  display_name: string;
+  taggings_count: number;
+  image_url: string;
+};
