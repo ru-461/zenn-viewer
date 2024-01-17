@@ -1,8 +1,7 @@
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
-
+import { FlatGrid } from 'react-native-super-grid';
 import useSWR from 'swr';
-
-import { FlatList } from 'react-native-gesture-handler';
+import TopicCard from '../../components/TopicCard';
 import type { Topic } from '../../types';
 
 const ExploreTabScreen = () => {
@@ -33,12 +32,11 @@ const ExploreTabScreen = () => {
 
   return (
     <View style={styles.container}>
-      <FlatList
+      <FlatGrid
         data={topics}
+        itemDimension={150}
         renderItem={(topic) => (
-          <View key={topic.item.id}>
-            <Text>{topic.item.name}</Text>
-          </View>
+          <TopicCard key={topic.item.id} topic={topic.item} />
         )}
       />
     </View>
