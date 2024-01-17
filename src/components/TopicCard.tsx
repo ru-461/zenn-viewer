@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   countText: {
+    marginTop: 6,
     fontSize: 12,
   },
 });
