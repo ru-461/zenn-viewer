@@ -1,18 +1,30 @@
-import { StyleSheet, Text, View } from 'react-native';
+import * as WebBrowser from 'expo-web-browser';
 
-import { Article } from '../types';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+
+import type { Article } from '../types';
 
 import EmojiBox from './EmojiBox';
 
 const ArticleCard = ({ article }: { article: Article }) => {
+  const baseUri = 'https://zenn.dev';
+  const articleUri = `${baseUri}/${article.path}`;
+
+  const onPressHandle = async () => {
+    const res = await WebBrowser.openBrowserAsync(articleUri);
+    console.log(res);
+  };
+
   return (
     <View
       style={article.article_type === 'tech' ? styles.techBox : styles.ideaBox}
     >
-      <View style={styles.row}>
-        <EmojiBox emoji={article.emoji} />
-        <Text style={styles.text}>{article.title}</Text>
-      </View>
+      <Pressable onPress={onPressHandle}>
+        <View style={styles.row}>
+          <EmojiBox emoji={article.emoji} />
+          <Text style={styles.text}>{article.title}</Text>
+        </View>
+      </Pressable>
     </View>
   );
 };
