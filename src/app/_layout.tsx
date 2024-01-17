@@ -1,16 +1,11 @@
-import { useEffect, useState } from 'react';
-
-import { useColorScheme } from 'react-native';
-
 import {
   DarkTheme,
   DefaultTheme,
   ThemeProvider,
 } from '@react-navigation/native';
 import { SplashScreen, Stack } from 'expo-router';
-import { SWRConfig } from 'swr';
-
-export { ErrorBoundary } from 'expo-router';
+import { useColorScheme } from 'react-native';
+import useSWR, { SWRConfig } from 'swr';
 
 export const unstable_settings = {
   initialRouteName: '(tabs)',
@@ -24,19 +19,12 @@ const fetcher = async (url: string): Promise<unknown> => {
 };
 
 const RootLayout = () => {
-  // 読み込みステート
-  const [isReady, setReady] = useState(false);
+  const { data } = useSWR('https://', fetcher);
 
-  useEffect(() => {
+  if (data) {
     SplashScreen.hideAsync();
-    setReady(true);
-  }, []);
-
-  if (!isReady) {
-    return null;
+    return <RootLayoutNav />;
   }
-
-  return <RootLayoutNav />;
 };
 export default RootLayout;
 
