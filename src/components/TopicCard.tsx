@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
   image: {
     width: 50,
     height: 50,
+    borderRadius: 32,
   },
   infoBox: {
     marginLeft: 10,
