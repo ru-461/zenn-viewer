@@ -19,7 +19,7 @@ const fetcher = async (url: string): Promise<unknown> => {
 };
 
 const RootLayout = () => {
-  const { data } = useSWR('https://', fetcher);
+  const { data } = useSWR('https://zenn.dev/api/articles', fetcher);
 
   if (data) {
     SplashScreen.hideAsync();
