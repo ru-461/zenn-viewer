@@ -1,9 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
-
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-
 import type { Article } from '../types';
-
 import EmojiBox from './EmojiBox';
 
 const ArticleCard = ({ article }: { article: Article }) => {
@@ -11,8 +8,7 @@ const ArticleCard = ({ article }: { article: Article }) => {
   const articleUri = `${baseUri}/${article.path}`;
 
   const onPressHandle = async () => {
-    const res = await WebBrowser.openBrowserAsync(articleUri);
-    console.log(res);
+    await WebBrowser.openBrowserAsync(articleUri);
   };
 
   return (
