@@ -1,17 +1,28 @@
+import * as WebBrowser from 'expo-web-browser';
+
 import { Image } from 'expo-image';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import type { Topic } from '../types';
 
 const TopicCard = ({ topic }: { topic: Topic }) => {
+  const onPressHandle = async () => {
+    const baseUri = 'https://zenn.dev/topics';
+    const topicUri = `${baseUri}/${topic.name}`;
+
+    await WebBrowser.openBrowserAsync(topicUri);
+  };
+
   return (
     <View style={styles.box}>
-      <View style={styles.row}>
-        <Image style={styles.image} source={topic.image_url} />
-        <View style={styles.infoBox}>
-          <Text style={styles.nameText}>{topic.display_name}</Text>
-          <Text style={styles.countText}>count: {topic.taggings_count}</Text>
+      <Pressable onPress={onPressHandle}>
+        <View style={styles.row}>
+          <Image style={styles.image} source={topic.image_url} />
+          <View style={styles.infoBox}>
+            <Text style={styles.nameText}>{topic.display_name}</Text>
+            <Text style={styles.countText}>count: {topic.taggings_count}</Text>
+          </View>
         </View>
-      </View>
+      </Pressable>
     </View>
   );
 };
