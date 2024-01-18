@@ -1,11 +1,5 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.5.2/schema.json",
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true
-    }
-  },
   "formatter": {
     "enabled": true,
     "indentStyle": "space"
@@ -13,6 +7,12 @@
   "javascript": {
     "formatter": {
       "quoteStyle": "single"
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
     }
   },
   "organizeImports": {
