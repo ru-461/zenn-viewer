@@ -42,6 +42,7 @@ const TrendingTabScreen = () => {
       <FlatList
         data={articles}
         onRefresh={onRefresh}
+        keyExtractor={(articles) => `${articles.id}`}
         refreshControl={
           <RefreshControl onRefresh={onRefresh} refreshing={refreshing} />
         }
