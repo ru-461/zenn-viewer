@@ -1,6 +1,5 @@
-import * as WebBrowser from 'expo-web-browser';
-
 import { Image } from 'expo-image';
+import * as WebBrowser from 'expo-web-browser';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import type { Topic } from '../types';
 

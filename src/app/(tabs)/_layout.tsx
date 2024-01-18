@@ -1,5 +1,4 @@
 import { Tabs } from 'expo-router';
-
 import TabBarIcon from '../../components/tabbaricon';
 
 const TabLayout = () => {
