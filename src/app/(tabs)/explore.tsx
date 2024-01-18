@@ -5,11 +5,9 @@ import TopicCard from '../../components/TopicCard';
 import type { Topic } from '../../types';
 
 const ExploreTabScreen = () => {
-  const { data, error, isLoading, mutate } = useSWR(
+  const { data, error, isLoading } = useSWR(
     'https://zenn.dev/api/topics?count=120&order=count&exclude_alias=true&exclude_topicnames=初心者%2Cメモ%2Czenn',
   );
-
-  const onRefresh = async () => mutate();
 
   if (error) {
     return (

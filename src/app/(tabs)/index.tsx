@@ -12,7 +12,7 @@ import { Article } from '../../types';
 const TrendingTabScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
 
-  const { data, error, isLoading, isValidating, mutate } = useSWR(
+  const { data, error, isLoading, mutate } = useSWR(
     'https://zenn.dev/api/articles',
   );
 
