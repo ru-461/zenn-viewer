@@ -14,7 +14,17 @@
     "enabled": true,
     "ignore": ["node_modules"],
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "correctness": {
+        "useHookAtTopLevel": "error"
+      },
+      "style": {
+        "noNegationElse": "error",
+        "useBlockStatements": "error"
+      },
+      "nursery": {
+        "noUnusedImports": "warn"
+      }
     }
   },
   "organizeImports": {
