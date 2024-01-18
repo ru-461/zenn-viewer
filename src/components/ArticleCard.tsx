@@ -1,3 +1,5 @@
+import { Image } from 'expo-image';
+import { Link } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import type { Article } from '../types';
@@ -18,7 +20,27 @@ const ArticleCard = ({ article }: { article: Article }) => {
       <Pressable onPress={onPressHandle}>
         <View style={styles.row}>
           <EmojiBox emoji={article.emoji} />
-          <Text style={styles.text}>{article.title}</Text>
+          <View>
+            <Text style={styles.text}>{article.title}</Text>
+            <View style={styles.row}>
+              <Image
+                style={styles.avatorImage}
+                source={{ uri: article.user.avatar_small_url }}
+              />
+              <Link
+                style={styles.infoText}
+                href={{
+                  pathname: '/users/[username]',
+                  params: { username: article.user.username },
+                }}
+              >
+                {article.user.username}
+              </Link>
+              <Text style={[styles.infoText, styles.likeText]}>
+                ♡{article.liked_count}
+              </Text>
+            </View>
+          </View>
         </View>
       </Pressable>
     </View>
@@ -47,5 +69,19 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     fontWeight: 'bold',
     flexWrap: 'wrap',
+  },
+  infoText: {
+    color: '#000000d1',
+    fontSize: 15,
+    paddingLeft: 4,
+  },
+  likeText: {
+    paddingLeft: 8,
+  },
+  avatorImage: {
+    width: 20,
+    height: 20,
+    borderRadius: 32,
+    margin: 4,
   },
 });
