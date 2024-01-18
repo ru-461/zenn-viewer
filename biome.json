@@ -16,6 +16,8 @@
     "rules": {
       "recommended": true,
       "correctness": {
+        "noUndeclaredVariables": "error",
+        "noUnusedVariables": "error",
         "useHookAtTopLevel": "error"
       },
       "style": {
