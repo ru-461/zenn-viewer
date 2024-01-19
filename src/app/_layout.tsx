@@ -5,6 +5,7 @@ import {
 } from '@react-navigation/native';
 import { SplashScreen, Stack } from 'expo-router';
 import { useColorScheme } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import useSWR, { SWRConfig } from 'swr';
 
 export const unstable_settings = {
@@ -33,12 +34,16 @@ const RootLayoutNav = () => {
   const colorScheme = useColorScheme();
 
   return (
-    <SWRConfig value={{ fetcher: fetcher }}>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
-      </ThemeProvider>
-    </SWRConfig>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SWRConfig value={{ fetcher: fetcher }}>
+        <ThemeProvider
+          value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+        >
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          </Stack>
+        </ThemeProvider>
+      </SWRConfig>
+    </GestureHandlerRootView>
   );
 };
