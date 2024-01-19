@@ -1,5 +1,6 @@
 import { Stack, useLocalSearchParams } from 'expo-router';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import TabBarIcon from '../../components/TabbarIcon';
 
 const Page = () => {
   const { username } = useLocalSearchParams();
@@ -15,7 +16,7 @@ const Page = () => {
           },
         }}
       />
-      <Text>{username}</Text>
+      <TabBarIcon color="red" name="code" />
     </View>
   );
 };
