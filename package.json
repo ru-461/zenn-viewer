@@ -8,7 +8,6 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "dev": "react-devtools",
-    "web": "expo start --web",
     "check": "biome check --apply ./src",
     "format": "biome format ./src",
     "format:fix": "biome format --write ./src",
