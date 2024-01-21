@@ -1,4 +1,5 @@
 import { Tabs } from 'expo-router';
+import HederIcon from '../../components/HeaderIcon';
 import TabBarIcon from '../../components/TabbarIcon';
 
 const TabLayout = () => {
@@ -7,6 +8,9 @@ const TabLayout = () => {
       screenOptions={{
         headerShown: true,
         tabBarShowLabel: false,
+        headerRight: () => (
+          <HederIcon color="#7C7C7D" name="search" onPress={() => {}} />
+        ),
       }}
     >
       <Tabs.Screen
