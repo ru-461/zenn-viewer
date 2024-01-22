@@ -1,5 +1,5 @@
-import { Tabs } from 'expo-router';
-import HederIcon from '../../components/HeaderIcon';
+import { Tabs, router } from 'expo-router';
+import HeaderIcon from '../../components/HeaderIcon';
 import TabBarIcon from '../../components/TabbarIcon';
 
 const TabLayout = () => {
@@ -9,7 +9,11 @@ const TabLayout = () => {
         headerShown: true,
         tabBarShowLabel: false,
         headerRight: () => (
-          <HederIcon color="#7C7C7D" name="search" onPress={() => {}} />
+          <HeaderIcon
+            color="#7C7C7D"
+            name="search"
+            onPress={() => router.push('/search')}
+          />
         ),
       }}
     >
