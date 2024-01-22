@@ -38,7 +38,7 @@ const TrendingTabScreen = () => {
   const articles = data.articles as Array<Article>;
 
   return (
-    <View style={styles.container}>
+    <View style={styles.listContainer}>
       <FlatList
         data={articles}
         onRefresh={onRefresh}
@@ -61,5 +61,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  listContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
   },
 });
