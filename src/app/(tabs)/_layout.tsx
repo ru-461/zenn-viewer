@@ -37,6 +37,17 @@ const TabLayout = () => {
           tabBarActiveTintColor: '#3EA8FF',
         }}
       />
+      <Tabs.Screen
+        name="results"
+        options={{
+          title: 'Results',
+          href: null,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon color={color} name="selection-search" />
+          ),
+          tabBarActiveTintColor: '#3EA8FF',
+        }}
+      />
     </Tabs>
   );
 };
