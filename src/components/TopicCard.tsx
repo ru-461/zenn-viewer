@@ -18,7 +18,12 @@ const TopicCard = ({
     <View style={styles.box}>
       <Pressable onPress={onPressHandle}>
         <View style={styles.row}>
-          <Image style={styles.image} source={topic.image_url} />
+          <Image
+            style={styles.image}
+            source={topic.image_url}
+            placeholder={require('../../assets/images/no_image.png')}
+            placeholderContentFit="contain"
+          />
           <View style={styles.infoBox}>
             <Text style={styles.nameText}>{topic.display_name}</Text>
             {showCount && (

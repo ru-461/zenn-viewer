@@ -1,11 +1,17 @@
 import { Stack } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
-import { Keyboard, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Keyboard, StyleSheet, TextInput, View } from 'react-native';
+import useSWR from 'swr';
+import TopicCard from '../components/TopicCard';
+import { Topic } from '../types';
 
 const SearchScreen = () => {
   const [value, setValue] = useState('');
   const [isFocus, setIsFocus] = useState(false);
+  const [suggestion, setSuggestion] = useState<Array<Topic>>([]);
   const textInputRef = useRef(null);
+  // 最大表示
+  const renderLimit = 5;
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -19,11 +25,27 @@ const SearchScreen = () => {
     return () => clearTimeout(timeoutId);
   }, []);
 
+  const { data } = useSWR(
+    'https://zenn.dev/api/topics?count=120&order=count&exclude_alias=true&exclude_topicnames=初心者%2Cメモ%2Czenn',
+  );
+
   const handleChangeText = (text: string) => {
     if (text === '') {
       setValue(text);
+      setSuggestion([]);
       return;
     }
+
+    // Type
+    const topics = data.topics as Array<Topic>;
+
+    // フィルター
+    const matchTopics = topics.filter((topic) => {
+      return topic.display_name.toLowerCase().includes(text.toLowerCase());
+    });
+
+    // 検索候補としてセット
+    setSuggestion(matchTopics);
 
     setValue(text);
   };
@@ -51,9 +73,15 @@ const SearchScreen = () => {
           onChangeText={(value) => handleChangeText(value)}
         />
       </View>
-      {isFocus && (
+      {isFocus && suggestion && (
         <View style={styles.contentsLayout}>
-          <Text>Search</Text>
+          {suggestion.map((topic, index) => {
+            if (index < renderLimit) {
+              return (
+                <TopicCard key={topic.id} topic={topic} showCount={false} />
+              );
+            }
+          })}
         </View>
       )}
     </View>
@@ -64,7 +92,6 @@ export default SearchScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     backgroundColor: '#fffffe',
   },
   searchContainer: {
@@ -83,7 +110,7 @@ const styles = StyleSheet.create({
     borderColor: '#3EA8FF',
   },
   contentsLayout: {
-    marginTop: 12,
-    marginHorizontal: 16,
+    marginHorizontal: 24,
+    rowGap: 2,
   },
 });
