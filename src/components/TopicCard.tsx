@@ -29,7 +29,6 @@ export default TopicCard;
 
 const styles = StyleSheet.create({
   box: {
-    flex: 1,
     backgroundColor: '#fff',
     padding: 12,
     borderRadius: 12,
