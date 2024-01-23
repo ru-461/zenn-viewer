@@ -3,7 +3,6 @@ import { Link } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import type { Article } from '../types';
-import EmojiBox from './EmojiBox';
 
 const ArticleCard = ({ article }: { article: Article }) => {
   const baseUri = 'https://zenn.dev';
@@ -18,28 +17,25 @@ const ArticleCard = ({ article }: { article: Article }) => {
       style={article.article_type === 'tech' ? styles.techBox : styles.ideaBox}
     >
       <Pressable onPress={onPressHandle}>
-        <View style={styles.row}>
-          <EmojiBox emoji={article.emoji} />
-          <View>
-            <Text style={styles.text}>{article.title}</Text>
-            <View style={styles.row}>
-              <Image
-                style={styles.avatorImage}
-                source={{ uri: article.user.avatar_small_url }}
-              />
-              <Link
-                style={styles.infoText}
-                href={{
-                  pathname: '/users/[username]',
-                  params: { username: article.user.username },
-                }}
-              >
-                {article.user.username}
-              </Link>
-              <Text style={[styles.infoText, styles.likeText]}>
-                ♡{article.liked_count}
-              </Text>
-            </View>
+        <View>
+          <Text style={styles.text}>{article.title}</Text>
+          <View style={styles.row}>
+            <Image
+              style={styles.avatorImage}
+              source={{ uri: article.user.avatar_small_url }}
+            />
+            <Link
+              style={styles.infoText}
+              href={{
+                pathname: '/users/[username]',
+                params: { username: article.user.username },
+              }}
+            >
+              {article.user.username}
+            </Link>
+            <Text style={[styles.infoText, styles.likeText]}>
+              ♡{article.liked_count}
+            </Text>
           </View>
         </View>
       </Pressable>
