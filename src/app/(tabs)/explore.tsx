@@ -34,7 +34,7 @@ const ExploreTabScreen = () => {
         data={topics}
         itemDimension={150}
         renderItem={(topic) => (
-          <TopicCard key={topic.item.id} topic={topic.item} />
+          <TopicCard key={topic.item.id} topic={topic.item} showCount />
         )}
       />
     </View>

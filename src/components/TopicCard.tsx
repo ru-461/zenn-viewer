@@ -3,7 +3,10 @@ import * as WebBrowser from 'expo-web-browser';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import type { Topic } from '../types';
 
-const TopicCard = ({ topic }: { topic: Topic }) => {
+const TopicCard = ({
+  topic,
+  showCount,
+}: { topic: Topic; showCount: boolean }) => {
   const onPressHandle = async () => {
     const baseUri = 'https://zenn.dev/topics';
     const topicUri = `${baseUri}/${topic.name}`;
@@ -18,7 +21,11 @@ const TopicCard = ({ topic }: { topic: Topic }) => {
           <Image style={styles.image} source={topic.image_url} />
           <View style={styles.infoBox}>
             <Text style={styles.nameText}>{topic.display_name}</Text>
-            <Text style={styles.countText}>count: {topic.taggings_count}</Text>
+            {showCount && (
+              <Text style={styles.countText}>
+                count: {topic.taggings_count}
+              </Text>
+            )}
           </View>
         </View>
       </Pressable>
