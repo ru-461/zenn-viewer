@@ -40,12 +40,12 @@ const SearchScreen = () => {
     const topics = data.topics as Array<Topic>;
 
     // フィルター
-    const matchTopics = topics.filter((topic) => {
-      return topic.display_name.toLowerCase().includes(text.toLowerCase());
-    });
+    const matchedTopics = topics.filter((topic) =>
+      topic.display_name.toLowerCase().includes(text.toLowerCase()),
+    );
 
     // 検索候補としてセット
-    setSuggestion(matchTopics);
+    setSuggestion(matchedTopics);
 
     setValue(text);
   };
