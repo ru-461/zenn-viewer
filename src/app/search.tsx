@@ -1,4 +1,4 @@
-import { Stack } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { Keyboard, StyleSheet, TextInput, View } from 'react-native';
 import useSWR from 'swr';
@@ -6,12 +6,14 @@ import TopicCard from '../components/TopicCard';
 import { Topic } from '../types';
 
 const SearchScreen = () => {
-  const [value, setValue] = useState('');
+  const [searchValue, setSearchValue] = useState('');
   const [isFocus, setIsFocus] = useState(false);
   const [suggestion, setSuggestion] = useState<Array<Topic>>([]);
   const textInputRef = useRef(null);
   // 最大表示
   const renderLimit = 5;
+
+  const router = useRouter();
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -31,7 +33,7 @@ const SearchScreen = () => {
 
   const handleChangeText = (text: string) => {
     if (text === '') {
-      setValue(text);
+      setSearchValue(text);
       setSuggestion([]);
       return;
     }
@@ -47,7 +49,15 @@ const SearchScreen = () => {
     // 検索候補としてセット
     setSuggestion(matchedTopics);
 
-    setValue(text);
+    setSearchValue(text);
+  };
+
+  const handleSubmitEditing = () => {
+    if (searchValue === '') {
+      return;
+    }
+
+    router.push({ pathname: '/results', params: { query: searchValue } });
   };
 
   const onBlur = () => {
@@ -62,7 +72,7 @@ const SearchScreen = () => {
       <View style={styles.searchContainer}>
         <TextInput
           style={[styles.textInput, isFocus && styles.activeInput]}
-          value={value}
+          value={searchValue}
           ref={textInputRef}
           onFocus={() => {
             setIsFocus(true);
@@ -71,6 +81,7 @@ const SearchScreen = () => {
           placeholder="Search keyword..."
           placeholderTextColor="#000"
           onChangeText={(value) => handleChangeText(value)}
+          onSubmitEditing={handleSubmitEditing}
         />
       </View>
       {isFocus && suggestion && (

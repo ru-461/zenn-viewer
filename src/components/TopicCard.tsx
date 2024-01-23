@@ -1,5 +1,5 @@
 import { Image } from 'expo-image';
-import * as WebBrowser from 'expo-web-browser';
+import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import type { Topic } from '../types';
 
@@ -7,11 +7,10 @@ const TopicCard = ({
   topic,
   showCount,
 }: { topic: Topic; showCount: boolean }) => {
-  const onPressHandle = async () => {
-    const baseUri = 'https://zenn.dev/topics';
-    const topicUri = `${baseUri}/${topic.name}`;
+  const router = useRouter();
 
-    await WebBrowser.openBrowserAsync(topicUri);
+  const onPressHandle = async () => {
+    router.push({ pathname: '/results', params: { query: topic.name } });
   };
 
   return (
