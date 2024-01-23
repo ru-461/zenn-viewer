@@ -1,9 +1,10 @@
 import { Stack } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { Keyboard, StyleSheet, Text, TextInput, View } from 'react-native';
 
 const SearchScreen = () => {
   const [value, setValue] = useState('');
+  const [isFocus, setIsFocus] = useState(false);
   const textInputRef = useRef(null);
 
   useEffect(() => {
@@ -12,14 +13,25 @@ const SearchScreen = () => {
       if (textInputRef.current) {
         textInputRef.current.focus();
       }
-    }, 500);
+    }, 1000);
 
     // クリーンアップ
     return () => clearTimeout(timeoutId);
   }, []);
 
   const handleChangeText = (text: string) => {
+    if (text === '') {
+      setValue(text);
+      return;
+    }
+
     setValue(text);
+  };
+
+  const onBlur = () => {
+    // キーボードを閉じる
+    Keyboard.dismiss();
+    setIsFocus(false);
   };
 
   return (
@@ -27,14 +39,23 @@ const SearchScreen = () => {
       <Stack.Screen options={{ title: 'Search', headerBackTitle: 'Back' }} />
       <View style={styles.searchContainer}>
         <TextInput
-          style={styles.textInput}
+          style={[styles.textInput, isFocus && styles.activeInput]}
           value={value}
           ref={textInputRef}
+          onFocus={() => {
+            setIsFocus(true);
+          }}
+          onBlur={onBlur}
           placeholder="Search keyword..."
           placeholderTextColor="#000"
           onChangeText={(value) => handleChangeText(value)}
         />
       </View>
+      {isFocus && (
+        <View style={styles.contentsLayout}>
+          <Text>Search</Text>
+        </View>
+      )}
     </View>
   );
 };
@@ -57,8 +78,11 @@ const styles = StyleSheet.create({
     margin: 24,
     padding: 8,
   },
+  activeInput: {
+    borderWidth: 1,
+    borderColor: '#3EA8FF',
+  },
   contentsLayout: {
-    flex: 1,
     marginTop: 12,
     marginHorizontal: 16,
   },

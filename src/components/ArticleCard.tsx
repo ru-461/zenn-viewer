@@ -62,8 +62,6 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-start',
   },
   text: {
     marginLeft: 10,
