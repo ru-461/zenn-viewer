@@ -21,6 +21,7 @@ const TabLayout = () => {
         name="index"
         options={{
           title: 'Trending',
+          headerTintColor: '#2E2E2E',
           tabBarIcon: ({ color }) => (
             <TabBarIcon color={color} name="trending-up" />
           ),
@@ -31,6 +32,7 @@ const TabLayout = () => {
         name="explore"
         options={{
           title: 'Explore',
+          headerTintColor: '#2E2E2E',
           tabBarIcon: ({ color }) => (
             <TabBarIcon color={color} name="selection-search" />
           ),
@@ -42,6 +44,7 @@ const TabLayout = () => {
         options={{
           title: 'Results',
           href: null,
+          headerTintColor: '#2E2E2E',
           tabBarIcon: ({ color }) => (
             <TabBarIcon color={color} name="selection-search" />
           ),
