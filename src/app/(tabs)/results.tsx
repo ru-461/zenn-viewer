@@ -8,7 +8,6 @@ import { Article } from '../../types';
 
 const ResultsScreen = () => {
   const { query } = useLocalSearchParams();
-
   const [refreshing, setRefreshing] = useState(false);
 
   const { data, error, isLoading, mutate } = useSWR(

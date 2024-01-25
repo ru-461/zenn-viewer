@@ -1,12 +1,27 @@
-import { useState } from 'react';
+import { useFocusEffect } from 'expo-router';
+import { useCallback, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { FlatList, RefreshControl } from 'react-native-gesture-handler';
 import useSWR from 'swr';
 import ArticleCard from '../../components/ArticleCard';
+import useKeywordStore from '../../store/useKeywordStore';
 import { Article } from '../../types';
 
 const TrendingTabScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
+
+  const keyword = useKeywordStore((state) => state.keyword);
+  const removeKeyword = useKeywordStore((state) => state.removeKeyword);
+
+  useFocusEffect(
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+    useCallback(() => {
+      // キーワードをステートから削除
+      if (keyword) {
+        removeKeyword();
+      }
+    }, [keyword]),
+  );
 
   const { data, error, isLoading, mutate } = useSWR(
     'https://zenn.dev/api/articles',

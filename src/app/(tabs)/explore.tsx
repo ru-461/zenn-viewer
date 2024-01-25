@@ -1,10 +1,26 @@
+import { useFocusEffect } from 'expo-router';
+import { useCallback } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
 import useSWR from 'swr';
 import TopicCard from '../../components/TopicCard';
+import useKeywordStore from '../../store/useKeywordStore';
 import type { Topic } from '../../types';
 
 const ExploreTabScreen = () => {
+  const keyword = useKeywordStore((state) => state.keyword);
+  const removeKeyword = useKeywordStore((state) => state.removeKeyword);
+
+  useFocusEffect(
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+    useCallback(() => {
+      // キーワードをステートから削除
+      if (keyword) {
+        removeKeyword();
+      }
+    }, [keyword]),
+  );
+
   const { data, error, isLoading } = useSWR(
     'https://zenn.dev/api/topics?count=120&order=count&exclude_alias=true&exclude_topicnames=初心者%2Cメモ%2Czenn',
   );

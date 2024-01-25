@@ -1,19 +1,14 @@
-import {
-  Stack,
-  useFocusEffect,
-  useLocalSearchParams,
-  useRouter,
-} from 'expo-router';
+import { Stack, useFocusEffect, useRouter } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Keyboard, StyleSheet, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import useSWR from 'swr';
 import TopicCard from '../components/TopicCard';
+import useKeywordStore from '../store/useKeywordStore';
 import { Topic } from '../types';
 
 const SearchScreen = () => {
   const [searchValue, setSearchValue] = useState<string>('');
-  const { keyword } = useLocalSearchParams();
   const [isFocus, setIsFocus] = useState(false);
   const [suggestion, setSuggestion] = useState<Array<Topic>>([]);
   const textInputRef = useRef(null);
@@ -22,11 +17,17 @@ const SearchScreen = () => {
 
   const router = useRouter();
 
+  const keyword = useKeywordStore((state) => state.keyword);
+  const setKeyword = useKeywordStore((state) => state.setKeyword);
+
   useFocusEffect(
     useCallback(() => {
       // キーワードをセット
       if (keyword) {
+        // 検索候補としてセット
         setSearchValue(`${keyword}`);
+        // サジェスト
+        handleChangeText(keyword);
       }
     }, [keyword]),
   );
@@ -71,7 +72,8 @@ const SearchScreen = () => {
     if (searchValue === '') {
       return;
     }
-
+    // 検索キーワードをセット
+    setKeyword(searchValue);
     router.push({ pathname: '/results', params: { query: searchValue } });
   };
 

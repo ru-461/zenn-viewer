@@ -1,6 +1,7 @@
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import useKeywordStore from '../store/useKeywordStore';
 import type { Topic } from '../types';
 
 const TopicCard = ({
@@ -8,8 +9,11 @@ const TopicCard = ({
   showCount,
 }: { topic: Topic; showCount: boolean }) => {
   const router = useRouter();
+  const setKeyword = useKeywordStore((state) => state.setKeyword);
 
   const onPressHandle = async () => {
+    // 検索キーワードをステートにセットして検索結果へ遷移
+    setKeyword(topic.display_name);
     router.push({ pathname: '/results', params: { query: topic.name } });
   };
 

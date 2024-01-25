@@ -2,12 +2,16 @@ import { Tabs, router } from 'expo-router';
 import { Pressable, StyleSheet, Text } from 'react-native';
 import HeaderIcon from '../../components/HeaderIcon';
 import TabBarIcon from '../../components/TabbarIcon';
+import useKeywordStore from '../../store/useKeywordStore';
 
 const handlePress = () => {
-  router.push({ pathname: '/search', params: { keyword: '' } });
+  router.push('/search');
 };
 
 const TabLayout = () => {
+  // ストアからキーワード取得
+  const keyword = useKeywordStore((state) => state.keyword);
+
   return (
     <Tabs
       screenOptions={{
@@ -51,7 +55,7 @@ const TabLayout = () => {
           ),
           headerTitle: () => (
             <Pressable style={styles.textInput} onPress={handlePress}>
-              <Text>{}</Text>
+              <Text>{keyword}</Text>
             </Pressable>
           ),
           headerRight: () => <></>,
