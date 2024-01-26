@@ -1,7 +1,7 @@
 import TopicCard from '@/src/components/TopicCard';
 import useKeywordStore from '@/src/store/useKeywordStore';
 import { Topic } from '@/src/types';
-import { Stack, useFocusEffect, useRouter } from 'expo-router';
+import { Stack, router, useFocusEffect } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Keyboard, StyleSheet, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
@@ -14,8 +14,6 @@ const SearchScreen = () => {
   const textInputRef = useRef(null);
   // 最大表示
   const renderLimit = 5;
-
-  const router = useRouter();
 
   // 検索キーワード
   const keyword = useKeywordStore((state) => state.keyword);

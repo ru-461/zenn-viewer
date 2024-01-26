@@ -1,14 +1,13 @@
 import useKeywordStore from '@/src/store/useKeywordStore';
 import type { Topic } from '@/src/types';
 import { Image } from 'expo-image';
-import { useRouter } from 'expo-router';
+import { router } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 const TopicCard = ({
   topic,
   showCount,
 }: { topic: Topic; showCount: boolean }) => {
-  const router = useRouter();
   const setKeyword = useKeywordStore((state) => state.setKeyword);
 
   const onPressHandle = async () => {
