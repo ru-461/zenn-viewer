@@ -1,11 +1,11 @@
+import TopicCard from '@/src/components/TopicCard';
+import useKeywordStore from '@/src/store/useKeywordStore';
+import type { Topic } from '@/src/types';
 import { useFocusEffect } from 'expo-router';
 import { useCallback } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
 import useSWR from 'swr';
-import TopicCard from '../../components/TopicCard';
-import useKeywordStore from '../../store/useKeywordStore';
-import type { Topic } from '../../types';
 
 const ExploreTabScreen = () => {
   const keyword = useKeywordStore((state) => state.keyword);

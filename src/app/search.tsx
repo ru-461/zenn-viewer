@@ -1,11 +1,11 @@
+import TopicCard from '@/src/components/TopicCard';
+import useKeywordStore from '@/src/store/useKeywordStore';
+import { Topic } from '@/src/types';
 import { Stack, useFocusEffect, useRouter } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Keyboard, StyleSheet, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import useSWR from 'swr';
-import TopicCard from '../components/TopicCard';
-import useKeywordStore from '../store/useKeywordStore';
-import { Topic } from '../types';
 
 const SearchScreen = () => {
   const [searchValue, setSearchValue] = useState<string>('');

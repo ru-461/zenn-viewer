@@ -1,10 +1,10 @@
+import ArticleCard from '@/src/components/ArticleCard';
+import { Article } from '@/src/types';
 import { useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { FlatList, RefreshControl } from 'react-native-gesture-handler';
 import useSWR from 'swr';
-import ArticleCard from '../../components/ArticleCard';
-import { Article } from '../../types';
 
 const ResultsScreen = () => {
   const { query } = useLocalSearchParams();

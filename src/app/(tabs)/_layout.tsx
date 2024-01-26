@@ -1,8 +1,8 @@
+import HeaderIcon from '@/src/components/HeaderIcon';
+import TabBarIcon from '@/src/components/TabbarIcon';
+import useKeywordStore from '@/src/store/useKeywordStore';
 import { Tabs, router } from 'expo-router';
 import { Pressable, StyleSheet, Text } from 'react-native';
-import HeaderIcon from '../../components/HeaderIcon';
-import TabBarIcon from '../../components/TabbarIcon';
-import useKeywordStore from '../../store/useKeywordStore';
 
 const TabLayout = () => {
   // 検索キーワード

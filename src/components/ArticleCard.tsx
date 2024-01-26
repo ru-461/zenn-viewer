@@ -1,8 +1,8 @@
+import type { Article } from '@/src/types';
 import { Image } from 'expo-image';
 import { Link } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import type { Article } from '../types';
 
 const ArticleCard = ({ article }: { article: Article }) => {
   const baseUri = 'https://zenn.dev';

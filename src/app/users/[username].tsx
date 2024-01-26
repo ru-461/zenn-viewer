@@ -1,6 +1,6 @@
+import TabBarIcon from '@/src/components/TabbarIcon';
 import { Stack, useLocalSearchParams } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
-import TabBarIcon from '../../components/TabbarIcon';
 
 const Page = () => {
   const { username } = useLocalSearchParams();

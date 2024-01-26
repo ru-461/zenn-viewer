@@ -1,8 +1,8 @@
+import useKeywordStore from '@/src/store/useKeywordStore';
+import type { Topic } from '@/src/types';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import useKeywordStore from '../store/useKeywordStore';
-import type { Topic } from '../types';
 
 const TopicCard = ({
   topic,
@@ -24,7 +24,7 @@ const TopicCard = ({
           <Image
             style={styles.image}
             source={topic.image_url}
-            placeholder={require('../../assets/images/no_image.png')}
+            placeholder={require('@/assets/images/no_image.png')}
             placeholderContentFit="contain"
           />
           <View style={styles.infoBox}>
