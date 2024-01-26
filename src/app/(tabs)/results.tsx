@@ -10,6 +10,7 @@ const ResultsScreen = () => {
   const { query } = useLocalSearchParams();
   const [refreshing, setRefreshing] = useState(false);
 
+  // Fetch Articles
   const { data, error, isLoading, mutate } = useSWR(
     `https://zenn.dev/api/search?q=${query}&order=daily&source=articles`,
   );

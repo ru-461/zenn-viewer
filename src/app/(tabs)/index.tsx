@@ -13,16 +13,7 @@ const TrendingTabScreen = () => {
   const keyword = useKeywordStore((state) => state.keyword);
   const removeKeyword = useKeywordStore((state) => state.removeKeyword);
 
-  useFocusEffect(
-    // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-    useCallback(() => {
-      // キーワードをステートから削除
-      if (keyword) {
-        removeKeyword();
-      }
-    }, [keyword]),
-  );
-
+  // Fetch Articles
   const { data, error, isLoading, mutate } = useSWR(
     'https://zenn.dev/api/articles',
   );
@@ -32,6 +23,16 @@ const TrendingTabScreen = () => {
     mutate();
     setRefreshing(false);
   };
+
+  useFocusEffect(
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+    useCallback(() => {
+      // キーワードをステートから削除
+      if (keyword) {
+        removeKeyword();
+      }
+    }, [keyword]),
+  );
 
   if (error) {
     return (

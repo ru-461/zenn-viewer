@@ -14,6 +14,7 @@ const fetcher = async (url: string): Promise<unknown> => {
 };
 
 const RootLayout = () => {
+  // Fetch Articles
   const { data } = useSWR('https://zenn.dev/api/articles', fetcher);
 
   if (data) {

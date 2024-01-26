@@ -21,6 +21,7 @@ const ExploreTabScreen = () => {
     }, [keyword]),
   );
 
+  // Fetch Topics
   const { data, error, isLoading } = useSWR(
     'https://zenn.dev/api/topics?count=120&order=count&exclude_alias=true&exclude_topicnames=初心者%2Cメモ%2Czenn',
   );
