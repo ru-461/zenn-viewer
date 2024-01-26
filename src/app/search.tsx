@@ -17,19 +17,28 @@ const SearchScreen = () => {
 
   const router = useRouter();
 
+  // 検索キーワード
   const keyword = useKeywordStore((state) => state.keyword);
   const setKeyword = useKeywordStore((state) => state.setKeyword);
 
+  // Fetch Topics
+  const { data } = useSWR(
+    'https://zenn.dev/api/topics?count=120&order=count&exclude_alias=true&exclude_topicnames=初心者%2Cメモ%2Czenn',
+  );
+  // Type
+  const topics = data.topics as Array<Topic>;
+
   useFocusEffect(
     useCallback(() => {
+      console.log('called');
       // キーワードをセット
       if (keyword) {
         // 検索候補としてセット
         setSearchValue(`${keyword}`);
         // サジェスト
-        handleChangeText(keyword);
+        setSuggestion(filterTopic(keyword, topics));
       }
-    }, [keyword]),
+    }, [keyword, topics]),
   );
 
   useEffect(() => {
@@ -44,35 +53,34 @@ const SearchScreen = () => {
     return () => clearTimeout(timeoutId);
   }, []);
 
-  const { data } = useSWR(
-    'https://zenn.dev/api/topics?count=120&order=count&exclude_alias=true&exclude_topicnames=初心者%2Cメモ%2Czenn',
-  );
+  const filterTopic = (display_name: string, topics: Topic[]): Array<Topic> => {
+    // フィルター
+    const matchedTopics = topics.filter((topic) =>
+      topic.display_name.toLowerCase().includes(display_name.toLowerCase()),
+    );
+
+    return matchedTopics;
+  };
 
   const handleChangeText = (text: string) => {
-    if (text === '') {
+    if (!text.trim()) {
       setSearchValue(text);
       setSuggestion([]);
       return;
     }
-    // Type
-    const topics = data.topics as Array<Topic>;
 
-    // フィルター
-    const matchedTopics = topics.filter((topic) =>
-      topic.display_name.toLowerCase().includes(text.toLowerCase()),
-    );
-
-    // 検索候補としてセット
-    setSuggestion(matchedTopics);
+    // フィルターした結果を検索候補としてセット
+    setSuggestion(filterTopic(text, topics));
 
     setSearchValue(text);
   };
 
   const handleSubmitEditing = () => {
-    if (searchValue === '') {
+    if (!searchValue.trim()) {
+      setSearchValue('');
       return;
     }
-    // 検索キーワードをセット
+    // 検索キーワードをセットして検索実行
     setKeyword(searchValue);
     router.push({ pathname: '/results', params: { query: searchValue } });
   };

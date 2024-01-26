@@ -4,13 +4,13 @@ import HeaderIcon from '../../components/HeaderIcon';
 import TabBarIcon from '../../components/TabbarIcon';
 import useKeywordStore from '../../store/useKeywordStore';
 
-const handlePress = () => {
-  router.push('/search');
-};
-
 const TabLayout = () => {
-  // ストアからキーワード取得
+  // 検索キーワード
   const keyword = useKeywordStore((state) => state.keyword);
+
+  const handlePress = () => {
+    router.push('/search');
+  };
 
   return (
     <Tabs
