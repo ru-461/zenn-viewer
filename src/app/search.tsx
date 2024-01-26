@@ -30,7 +30,6 @@ const SearchScreen = () => {
 
   useFocusEffect(
     useCallback(() => {
-      console.log('called');
       // キーワードをセット
       if (keyword) {
         // 検索候補としてセット
