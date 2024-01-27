@@ -1,10 +1,11 @@
 import ArticleCard from '@/src/components/ArticleCard';
 import useKeywordStore from '@/src/store/useKeywordStore';
 import { Article } from '@/src/types';
+import { FlashList } from '@shopify/flash-list';
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
-import { FlatList, RefreshControl } from 'react-native-gesture-handler';
+import { RefreshControl } from 'react-native-gesture-handler';
 import useSWR from 'swr';
 
 const TrendingTabScreen = () => {
@@ -55,9 +56,11 @@ const TrendingTabScreen = () => {
 
   return (
     <View style={styles.listContainer}>
-      <FlatList
+      <FlashList
         data={articles}
         onRefresh={onRefresh}
+        refreshing={refreshing}
+        estimatedItemSize={200}
         keyExtractor={(articles) => `${articles.id}`}
         refreshControl={
           <RefreshControl onRefresh={onRefresh} refreshing={refreshing} />
