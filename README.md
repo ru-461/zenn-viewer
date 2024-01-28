@@ -8,11 +8,15 @@ Recommended installation in [Bun](https://github.com/oven-sh/bun).
 
 ### Install
 
+Install dependencies.
+
 ```shell
 bun install
 ```
 
 ### Launch
+
+Launch application.
 
 ```shell
 bun run start
