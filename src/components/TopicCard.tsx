@@ -7,7 +7,10 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 const TopicCard = ({
   topic,
   showCount,
-}: { topic: Topic; showCount: boolean }) => {
+}: {
+  topic: Topic;
+  showCount: boolean;
+}) => {
   const setKeyword = useKeywordStore((state) => state.setKeyword);
 
   const onPressHandle = async () => {
