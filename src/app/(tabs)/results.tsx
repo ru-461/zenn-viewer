@@ -56,6 +56,7 @@ const ResultsScreen = () => {
     </View>
   );
 };
+
 export default ResultsScreen;
 
 const styles = StyleSheet.create({

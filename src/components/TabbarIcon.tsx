@@ -12,6 +12,7 @@ const TabBarIcon = ({ color, name }) => {
     />
   );
 };
+
 export default TabBarIcon;
 
 const styles = StyleSheet.create({

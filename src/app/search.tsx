@@ -120,6 +120,7 @@ const SearchScreen = () => {
     </View>
   );
 };
+
 export default SearchScreen;
 
 const styles = StyleSheet.create({

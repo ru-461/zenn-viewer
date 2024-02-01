@@ -57,6 +57,7 @@ const ExploreTabScreen = () => {
     </View>
   );
 };
+
 export default ExploreTabScreen;
 
 const styles = StyleSheet.create({

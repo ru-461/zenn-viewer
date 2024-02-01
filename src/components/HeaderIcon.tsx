@@ -13,6 +13,7 @@ const HeaderIcon = ({ color, name, onPress }) => {
     />
   );
 };
+
 export default HeaderIcon;
 
 const styles = StyleSheet.create({

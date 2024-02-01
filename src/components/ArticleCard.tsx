@@ -42,6 +42,7 @@ const ArticleCard = ({ article }: { article: Article }) => {
     </View>
   );
 };
+
 export default ArticleCard;
 
 const styles = StyleSheet.create({

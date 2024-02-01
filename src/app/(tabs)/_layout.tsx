@@ -65,6 +65,7 @@ const TabLayout = () => {
     </Tabs>
   );
 };
+
 export default TabLayout;
 
 const styles = StyleSheet.create({

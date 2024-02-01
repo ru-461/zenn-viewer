@@ -20,6 +20,7 @@ const Page = () => {
     </View>
   );
 };
+
 export default Page;
 
 const styles = StyleSheet.create({

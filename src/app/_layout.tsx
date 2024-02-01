@@ -22,6 +22,7 @@ const RootLayout = () => {
     return <RootLayoutNav />;
   }
 };
+
 export default RootLayout;
 
 const RootLayoutNav = () => {

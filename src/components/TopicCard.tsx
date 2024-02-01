@@ -42,6 +42,7 @@ const TopicCard = ({
     </View>
   );
 };
+
 export default TopicCard;
 
 const styles = StyleSheet.create({

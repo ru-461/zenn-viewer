@@ -14,4 +14,5 @@ const useKeywordStore = create<Store & Action>()((set) => ({
   setKeyword: (keyword) => set(() => ({ keyword: keyword })),
   removeKeyword: () => set({ keyword: '' }),
 }));
+
 export default useKeywordStore;

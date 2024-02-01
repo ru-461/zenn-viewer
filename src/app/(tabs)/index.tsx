@@ -72,6 +72,7 @@ const TrendingTabScreen = () => {
     </View>
   );
 };
+
 export default TrendingTabScreen;
 
 const styles = StyleSheet.create({
