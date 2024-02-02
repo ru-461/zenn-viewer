@@ -2,19 +2,15 @@
 
 View Zenn articles & Zenn books app.  Powered by [Expo](https://github.com/expo/expo) x [React Native](https://github.com/facebook/react-native).
 
-## Getting started
+## Getting Started
 
 Recommended installation in [Bun](https://github.com/oven-sh/bun).
-
-### Install
 
 Install dependencies.
 
 ```shell
 bun install
 ```
-
-### Launch
 
 Launch application.
 
