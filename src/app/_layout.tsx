@@ -1,4 +1,5 @@
-import { SplashScreen, Stack } from 'expo-router';
+import { useReactNavigationDevTools } from '@dev-plugins/react-navigation';
+import { SplashScreen, Stack, useNavigationContainerRef } from 'expo-router';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import useSWR, { SWRConfig } from 'swr';
 
@@ -26,6 +27,10 @@ const RootLayout = () => {
 export default RootLayout;
 
 const RootLayoutNav = () => {
+  const navigationRef = useNavigationContainerRef();
+
+  useReactNavigationDevTools(navigationRef);
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SWRConfig value={{ fetcher: fetcher }}>
