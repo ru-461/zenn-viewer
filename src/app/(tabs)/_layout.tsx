@@ -16,7 +16,6 @@ const TabLayout = () => {
     <Tabs
       screenOptions={{
         headerShown: true,
-        tabBarShowLabel: false,
         headerRight: () => (
           <HeaderIcon color="#7C7C7D" name="search" onPress={handlePress} />
         ),
