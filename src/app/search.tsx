@@ -7,6 +7,17 @@ import { Keyboard, StyleSheet, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import useSWR from 'swr';
 
+const useTopics = () => {
+  const { data, error, isLoading, mutate } = useSWR(
+    'https://zenn.dev/api/topics?count=120&order=count&exclude_alias=true&exclude_topicnames=初心者%2Cメモ%2Czenn',
+  );
+
+  // Type
+  const topics = data?.topics as Array<Topic>;
+
+  return { topics, error, isLoading, mutate };
+};
+
 const SearchScreen = () => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [isFocus, setIsFocus] = useState(false);
@@ -20,11 +31,15 @@ const SearchScreen = () => {
   const setKeyword = useKeywordStore((state) => state.setKeyword);
 
   // Fetch Topics
-  const { data } = useSWR(
-    'https://zenn.dev/api/topics?count=120&order=count&exclude_alias=true&exclude_topicnames=初心者%2Cメモ%2Czenn',
-  );
-  // Type
-  const topics = data.topics as Array<Topic>;
+  const { topics, error, isLoading } = useTopics();
+
+  if (isLoading) {
+    // TODO: Loading
+  }
+
+  if (error) {
+    // TODO: Error
+  }
 
   useFocusEffect(
     useCallback(() => {
