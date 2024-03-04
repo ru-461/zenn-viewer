@@ -2,7 +2,13 @@ import useKeywordStore from '@/src/store/useKeywordStore';
 import type { Topic } from '@/src/types';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import {
+  Pressable,
+  PressableStateCallbackType,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
 const TopicCard = ({
   topic,
@@ -20,26 +26,27 @@ const TopicCard = ({
   };
 
   return (
-    <View style={styles.box}>
-      <Pressable onPress={onPressHandle}>
-        <View style={styles.row}>
-          <Image
-            style={styles.image}
-            source={topic.image_url}
-            placeholder={require('@/assets/images/no_image.png')}
-            placeholderContentFit="contain"
-          />
-          <View style={styles.infoBox}>
-            <Text style={styles.nameText}>{topic.display_name}</Text>
-            {showCount && (
-              <Text style={styles.countText}>
-                count: {topic.taggings_count}
-              </Text>
-            )}
-          </View>
+    <Pressable
+      onPress={onPressHandle}
+      style={({ pressed }: PressableStateCallbackType) => [
+        pressed ? styles.pressedBox : styles.box,
+      ]}
+    >
+      <View style={styles.row}>
+        <Image
+          style={styles.image}
+          source={topic.image_url}
+          placeholder={require('@/assets/images/no_image.png')}
+          placeholderContentFit="contain"
+        />
+        <View style={styles.infoBox}>
+          <Text style={styles.nameText}>{topic.display_name}</Text>
+          {showCount && (
+            <Text style={styles.countText}>count: {topic.taggings_count}</Text>
+          )}
         </View>
-      </Pressable>
-    </View>
+      </View>
+    </Pressable>
   );
 };
 
@@ -47,12 +54,20 @@ export default TopicCard;
 
 const styles = StyleSheet.create({
   box: {
-    backgroundColor: '#fff',
     padding: 12,
     borderRadius: 12,
     borderColor: '#E4EDF4',
     borderWidth: 2,
     marginVertical: 2,
+    backgroundColor: '#fff',
+  },
+  pressedBox: {
+    padding: 12,
+    borderRadius: 12,
+    borderColor: '#E4EDF4',
+    borderWidth: 2,
+    marginVertical: 2,
+    backgroundColor: '#ECF5FF',
   },
   row: {
     flexDirection: 'row',
