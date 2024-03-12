@@ -29,6 +29,11 @@
       }
     }
   },
+  "json": {
+    "parser": {
+      "allowComments": true
+    }
+  },
   "organizeImports": {
     "enabled": true
   }
