@@ -1,11 +1,10 @@
 import TopicCard from '@/src/components/TopicCard';
 import useKeywordStore from '@/src/store/useKeywordStore';
-import type { Topic } from '@/src/types';
 import { useFocusEffect } from 'expo-router';
 import { useCallback } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
-import useSWR from 'swr';
+import useTopics from '../hooks/useTopics';
 
 const ExploreTabScreen = () => {
   const keyword = useKeywordStore((state) => state.keyword);
@@ -22,9 +21,7 @@ const ExploreTabScreen = () => {
   );
 
   // Fetch Topics
-  const { data, error, isLoading } = useSWR(
-    'https://zenn.dev/api/topics?count=120&order=count&exclude_alias=true&exclude_topicnames=初心者%2Cメモ%2Czenn',
-  );
+  const { topics, error, isLoading } = useTopics();
 
   if (error) {
     return (
@@ -41,9 +38,6 @@ const ExploreTabScreen = () => {
       </View>
     );
   }
-
-  // Type
-  const topics = data.topics as Array<Topic>;
 
   return (
     <View style={styles.container}>

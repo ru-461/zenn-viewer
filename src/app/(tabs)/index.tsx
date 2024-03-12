@@ -1,12 +1,11 @@
 import ArticleCard from '@/src/components/ArticleCard';
 import useKeywordStore from '@/src/store/useKeywordStore';
-import { Article } from '@/src/types';
 import { FlashList } from '@shopify/flash-list';
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { RefreshControl } from 'react-native-gesture-handler';
-import useSWR from 'swr';
+import useArticles from '../hooks/useArticles';
 
 const TrendingTabScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
@@ -15,9 +14,7 @@ const TrendingTabScreen = () => {
   const removeKeyword = useKeywordStore((state) => state.removeKeyword);
 
   // Fetch Articles
-  const { data, error, isLoading, mutate } = useSWR(
-    'https://zenn.dev/api/articles',
-  );
+  const { articles, error, isLoading, mutate } = useArticles();
 
   const onRefresh = async () => {
     setRefreshing(true);
@@ -50,9 +47,6 @@ const TrendingTabScreen = () => {
       </View>
     );
   }
-
-  // Type
-  const articles = data.articles as Array<Article>;
 
   return (
     <View style={styles.listContainer}>

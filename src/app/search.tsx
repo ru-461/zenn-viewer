@@ -5,18 +5,7 @@ import { Stack, router, useFocusEffect } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Keyboard, StyleSheet, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import useSWR from 'swr';
-
-const useTopics = () => {
-  const { data, error, isLoading, mutate } = useSWR(
-    'https://zenn.dev/api/topics?count=120&order=count&exclude_alias=true&exclude_topicnames=初心者%2Cメモ%2Czenn',
-  );
-
-  // Type
-  const topics = data?.topics as Array<Topic>;
-
-  return { topics, error, isLoading, mutate };
-};
+import useTopics from './hooks/useTopics';
 
 const SearchScreen = () => {
   const [searchValue, setSearchValue] = useState<string>('');

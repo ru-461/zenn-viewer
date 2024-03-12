@@ -10,15 +10,13 @@ import {
   Text,
   View,
 } from 'react-native';
-import useSWR from 'swr';
+import useUser from '../hooks/useUser';
 
 const userScreen = () => {
   const { username } = useLocalSearchParams();
   const [refreshing, setRefreshing] = useState(false);
 
-  const { data, error, isLoading, mutate } = useSWR(
-    `https://zenn.dev/api/articles?username=${username}&order=latest`,
-  );
+  const { data, error, isLoading, mutate } = useUser(username);
 
   const onRefresh = async () => {
     setRefreshing(true);
