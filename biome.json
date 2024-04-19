@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.5.3/schema.json",
+  "$schema": "https://biomejs.dev/schemas/1.7.0/schema.json",
   "formatter": {
     "enabled": true,
     "ignore": ["node_modules"],
@@ -18,14 +18,12 @@
       "correctness": {
         "noUndeclaredVariables": "error",
         "noUnusedVariables": "error",
-        "useHookAtTopLevel": "error"
+        "useHookAtTopLevel": "error",
+        "noUnusedImports": "warn"
       },
       "style": {
         "noNegationElse": "error",
         "useBlockStatements": "error"
-      },
-      "nursery": {
-        "noUnusedImports": "warn"
       }
     }
   },
