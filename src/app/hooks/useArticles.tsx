@@ -1,4 +1,4 @@
-import { Article } from '@/src/types';
+import type { Article } from '@/src/types';
 import useSWR from 'swr';
 
 const useArticles = () => {

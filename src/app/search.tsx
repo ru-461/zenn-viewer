@@ -1,6 +1,6 @@
 import TopicCard from '@/src/components/TopicCard';
 import useKeywordStore from '@/src/store/useKeywordStore';
-import { Topic } from '@/src/types';
+import type { Topic } from '@/src/types';
 import { Stack, router, useFocusEffect } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Keyboard, StyleSheet, View } from 'react-native';

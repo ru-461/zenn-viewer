@@ -1,5 +1,5 @@
 import ArticleCard from '@/src/components/ArticleCard';
-import { Article } from '@/src/types';
+import type { Article } from '@/src/types';
 import { FlashList } from '@shopify/flash-list';
 import { Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';

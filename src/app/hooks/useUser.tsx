@@ -1,4 +1,4 @@
-import { User } from '@/src/types';
+import type { User } from '@/src/types';
 import useSWR from 'swr';
 
 const useUser = (username: string) => {

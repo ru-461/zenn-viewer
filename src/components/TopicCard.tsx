@@ -4,7 +4,7 @@ import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import {
   Pressable,
-  PressableStateCallbackType,
+  type PressableStateCallbackType,
   StyleSheet,
   Text,
   View,
